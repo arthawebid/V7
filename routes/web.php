@@ -16,19 +16,16 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-
-Route::get('/aboutus', function(){
-    echo "Ini Merupakan contoh sebuah page (page About)";
-})->name("tentang");
-
-Route::get('/show/{id?}', function($id=1){
-    echo "Paramter ID: " . $id;
-})->where('id','[0-9]+');
-
-Route::get('/utama',function(){
-    echo "Ini Page Utama";
-    echo "<br>";
-    echo "<a href='".route('tentang')."'>About</a>";
-});
-
-Route::get('/produk','produkController@index');
+Route::get('/about', function () {
+    echo "ini merupakan contoh sebuah page (page about)"  ;
+ })->name("about");
+ 
+ Route::get('/show/{id?}', function ($id=1) {
+ echo "Nilai Parameter Adalah ".$id;
+ });
+ 
+ Route::get('/home', function () {
+ echo "<a href='".route('about')."'>page about </a>";
+ });
+ 
+ Route::get('/produk','produkController@index');
