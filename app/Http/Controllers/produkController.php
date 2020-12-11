@@ -8,7 +8,12 @@ class produkController extends Controller
 {
     //property INDEX
     public function index(){
-        $isi = "Ini merupakan sebuah controller dengan propery index";
-        return $isi;
+        $produk = "Sepatu JN 325";
+        return view('produk/index');
+    }
+    //property showproduk
+    public function showproduk(){
+        $produk = ["Sepatu JN 325","Minuman Bersoda","Buku Sejarah","Mouse Pad"];
+        return view('produk.showproduk',compact('produk'));
     }
 }
