@@ -38,5 +38,13 @@ Route::get('/about', function () {
  Route::get('/prak9_01','Prak9Controller@QB_tugas1');
  Route::get('/prak9_02','Prak9Controller@QB_tugas2');
  Route::get('/prak9_03','Prak9Controller@QB_tugas3');
+ Route::get('/ProdperKat/{$id}','GraphController@ProdperKat')->name('prak10.prod');
  Route::resource('/prak10','Prak10Controller');
+ Route::get('/prak11/logout','Prak11Controller@logout')->name('prak11.logout');
  Route::resource('/prak11','Prak11Controller');
+Auth::routes();
+
+Route::get('/prak14','Prak11Controller@index');
+Route::get('/prak14/ChartProdperKat','Prak14Controller@ChartProdperKat')->name('prak14.ProdukperKategori');
+Route::get('/prak14/{id}/perkategori', 'Prak14Controller@ChartKategori')->name('prak14.perkategori');
+Route::get('/home', 'HomeController@index')->name('home');

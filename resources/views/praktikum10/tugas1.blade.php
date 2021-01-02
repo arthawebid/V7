@@ -1,17 +1,21 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>List Kategori ~ Latihan Praktikum 10</title>
-    </head>
-    <body>
+@extends('praktikum')
+@section('JUDULPAGE','Daftar data Kategori')
+@section('KONTEN')
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item active" aria-current="page">produk</li>
+  </ol>
+</nav>
         <h2>Data kategori </h2>
-
-        Jumlah Data : {{ $JRek }}
-        <a href="http://localhost:8000/prak10/create">Tambah Data</a>
-        <table border="1">
+        <sup>Total data: {{$JRek}} record</sup>
+<div class="container">
+<a class="btn btn-success" href="{{route('prak10.create')}}">Tambah Data</a>
+</div>
+<table class="table">
+  <thead>
         <thead>
             <tr>
-                <th>No</th>
+                <th>#</th>
                 <th>ID Kategori</th>
                 <th>Kategori</th>
                 <th>Deskripsi</th>
@@ -25,11 +29,12 @@
                 <td>{{$p->idkat}}</td>
                 <td>{{$p->kategori}}</td>
                 <th>{{$p->keterangan}}</td>
-                <td><a href="http://localhost:8000/prak10/{{$p->idkat}}/edit">Ubah</a></td>
+                <td>
+                    <a href="{{route('prak10.edit',$p->idkat)}}">Ubah</a>
+                    <a href="{{route('prak14.perkategori',$p->idkat)}}">Prod</a>
+                </td>
             </tr>
         @endforeach
         </tbody>
         </table>
-
-    </body>
-</html>
+@endsection

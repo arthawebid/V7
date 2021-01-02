@@ -1,9 +1,6 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Menambahkan Data Kategori ~ Latihan Praktikum 10</title>
-    </head>
-    <body>
+@extends('praktikum')
+@section('JUDULPAGE','Daftar data Kategori')
+@section('KONTEN')
         <h2>Menambahkan Data kategori </h2>
 
         @if (count($errors) > 0)
@@ -33,5 +30,4 @@
                 * harus diisi
             </div>
         </form>
-    </body>
-</html>
+@endsection

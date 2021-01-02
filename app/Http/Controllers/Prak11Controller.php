@@ -1,13 +1,27 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\kategori;
 use App\produks;
 
 class Prak11Controller extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    /**
+     * Log the user out of the application.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function logout()
+    {
+        Auth::logout();
+        return redirect('/prak11');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -114,5 +128,32 @@ class Prak11Controller extends Controller
     public function destroy($id)
     {
         //
+    }
+    /*
+    [
+        ["Element", "green", { role: "style" } ],
+        ["Copper", 8.94, "green"],
+        ["Silver", 10.49, "green"],
+        ["Gold", 19.30, "green"],
+        ["Platinum", 21.45, "green"]
+    ]
+    */
+    public function chartProdperJns(){
+        $Kgrp = kategori::get();
+        $rl = array("role"=>"Blue");
+        $a = array("Element", "TotProd",$rl);
+        $dta = array($a);
+
+        foreach ($Kgrp as $i => $v) {
+            $prd = produks::where('id_kat',$v->idkat)->get();
+            $jml = 0;
+            foreach ($prd as $ix => $vx){
+                $jml += $vx->qty;
+            }
+            array_push($dta,array($v->kategori,$jml,"yellow"));
+        }
+        return view('praktikum11.graph')
+            ->with('JUDULGRAFIK',"Produk Per kategori")
+            ->with('DTA',json_encode($dta));
     }
 }

@@ -1,9 +1,24 @@
 <?php
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\kategori;
 class Prak10Controller extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    /**
+     * Log the user out of the application.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function logout()
+    {
+        Auth::logout();
+        return redirect('/prak11');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -107,4 +122,17 @@ class Prak10Controller extends Controller
         kategori::where('idkat',$id)->delete();
         return redirect()->route('prak10.index');        
     }
+    /**
+     * Read data produks per ID Kategoris.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function PperJ($id)
+    {
+        //membaca data yang akan di edit
+        $EDt = kategori::where('idkat',$id)->first();
+        return view('praktikum10.tugas1edit', compact('EDt'));
+    }
+
 }
